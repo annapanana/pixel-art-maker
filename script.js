@@ -1,41 +1,4 @@
 "use strict";
-// var palette = require("colors.js");
-
-var colorPalette = {
-  red: '#B23232',
-  coral: '#FF4848',
-  pink: '#FF6C6C ',
-  mustard: '#E59B40',
-  orange: '#FFAD48',
-  tan: '#FFC57E',
-  yellowish: '#E5DE40',
-  yellow: '#FFF748',
-  yellowPale: '#FFFA91',
-  green: '#39CC4B',
-  neonGreen: '#48FF5E',
-  paleGreen: '#91FF9E',
-  deepBlue: '#3248B2',
-  blue: '#4867FF',
-  perrywinkle: '#91A3FF',
-  purpleNurple: '#6432B2',
-  purple: '#8F48FF',
-  palePurple: '#BB91FF',
-  deepPurple: '#7C2B99',
-  pinkishPurple: '#CF48FF',
-  pink: '#E291FF',
-  black: '#000000',
-  darkestGray: '#323232',
-  mediumGray: '#666666',
-  gray: '#999999',
-  lightGray: '#CCCCCC',
-  white: '#FFFFFF',
-  darkestBrown: '#3A2119',
-  darkBrown: '#512E23',
-  mediumBrown: '#754233',
-  lightBrown: '#90675B',
-  lightestBrown: '#AC8D84'
-};
-
 
 initPalette();
 initCanvas();
@@ -53,14 +16,18 @@ function initPalette() {
     document.querySelector("#palette").appendChild(div);
   }
 
-  brushColor = "#000000";
+  brushColor = "#000";
+  document.querySelector("#eraser").style.backgroundColor = "#FFF";
+  document.querySelector("#pen").style.backgroundColor = "#000";
+  document.querySelector("#trash").style.backgroundColor = "#808080";
+  document.querySelector("#newRow").style.backgroundColor = "#FFF";
 }
 
 function initCanvas() {
 
   // create columns
   var columns = [];
-  for (var i = 0; i < 40; i++) {
+  for (var i = 0; i < 58; i++) {
     var div = document.createElement("div");
     div.className = "column";
     document.querySelector("#canvas").appendChild(div);
@@ -99,14 +66,29 @@ document.querySelector("#page").addEventListener("mouseup", function(event) {
 // Update color selection
 document.querySelector("#palette").addEventListener("click", function(event) {
   brushColor = event.target.id;
+  document.querySelector("#pen").style.backgroundColor = event.target.id;
   // brushElement = event.target; b
 });
 
-// Draw pixel
 document.querySelector("#canvas").addEventListener("mouseover", function(event) {
-  if (event.target.className != "column" && event.target.className != "container") {
-    if (mouseDown) {
+  if (mouseDown) {
+    if (event.target.id !== "canvas" && event.target.className !== "row" && event.target.className !== "column") {
       event.target.style.backgroundColor = brushColor;
     }
   }
 });
+
+// // Update tool selection
+// document.querySelector("#toolPanel").addEventListener("click", function(event) {
+//   switch (event.target.id) {
+//     case "pen":
+//
+//       break;
+//     case "eraser":
+//
+//       break;
+//     case "trash":
+//
+//       break;
+//   }
+// });

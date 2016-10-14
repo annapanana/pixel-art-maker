@@ -4,10 +4,14 @@
     <meta charset="utf-8">
     <title>Pixel Art Maker</title>
     <link rel="stylesheet" href="styles.css" media="screen" title="no title">
-    <script type="text/javascript" src="script.js" defer></script>
     <script type="text/javascript" src="colors.js" defer></script>
+    <script type="text/javascript" src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet">
   </head>
   <body id="page">
+    <nav>
+      <h1>Pixelmania!</h1>
+    </nav>
     <div class="container">
       <div class="grid" id="canvas"></div>
       <div class="palette-container" id="palette">
@@ -16,7 +20,12 @@
           <div class="column" id="blue"></div> -->
         </div>
       </div>
+      <div class="grid" id="toolPanel">
+        <img src="img/penTool.svg" alt="pen tool" class="tools" id="pen"/>
+        <img src="img/eraserTool.svg" alt="eraser tool" class="tools" id="eraser"/>
+        <img src="img/trashCan.svg" alt="trash tool" class="tools" id="trash"/>
+        <img src="img/newRow.svg" alt="new row" class="tools" id="newRow"/>
+      </div>
     </div>
-
   </body>
 </html>

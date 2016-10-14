@@ -1,14 +1,33 @@
 body {
+  background-color: #E8DCD1;
+}
 
+h1 {
+  font-family: 'Bungee Inline';
+  font-size: 38px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  background-color: #CCCCCC;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+  border-radius: 20px;
+  margin-right: 10%;
+  margin-left: 10%;
+  /*margin-top: 50px;*/
+  padding-top: 10px;
+  min-width: 960px;
 }
 
 .grid {
-  margin-right: 10%;
-  margin-left: 10%;
   margin-top: 20px;
   display: flex;
   justify-content: center;
-  background-color: #CCCCCC;
+  /*background-color: #CCCCCC;*/
   min-width: 720px;
 }
 
@@ -39,16 +58,28 @@ body {
 }
 
 .palette-container {
-  margin-left: 15%;
-  margin-right: 15%;
-  margin-top: 10px;
+  margin-top: 15px;
+  margin-right: 35px;
+  margin-left: 35px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .color-blob {
-  height: 35px;
-  width:  35px;
+  height: 45px;
+  width:  45px;
   border-radius: 50%;
+  margin: 8px;
+}
+
+.tools {
+  width:100px;
+  height:100px;
+  padding: 10px;
   margin: 10px;
+  margin-top: 0px;
+  background-color: transparent;
+  border-radius: 50%;
+  /*fill: blue;*/
 }
