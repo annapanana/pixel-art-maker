@@ -4,6 +4,7 @@ initPalette();
 initCanvas();
 var brushColor; //a reference to an entry in palette
 var mouseDown = false;
+var penSelected = true;
 // var brushElement;
 
 function initPalette() {
@@ -13,14 +14,17 @@ function initPalette() {
     div.className = "color-blob";
     div.id = colorPalette[key];
     div.style.backgroundColor = colorPalette[key];
+    div.style.borderColor = colorPalette[key];
     document.querySelector("#palette").appendChild(div);
   }
 
-  brushColor = "#000";
-  document.querySelector("#eraser").style.backgroundColor = "#FFF";
-  document.querySelector("#pen").style.backgroundColor = "#000";
+  brushColor = "#231F20";
+  // updateBlobStroke(document.querySelector("#231F20"));
+  document.querySelector("#eraser").style.backgroundColor = "#808080";
+  document.querySelector("#pen").style.backgroundColor = "#231F20";
   document.querySelector("#trash").style.backgroundColor = "#808080";
-  document.querySelector("#newRow").style.backgroundColor = "#FFF";
+  document.querySelector("#newRow").style.backgroundColor = "#808080";
+
 }
 
 function initCanvas() {
@@ -67,28 +71,67 @@ document.querySelector("#page").addEventListener("mouseup", function(event) {
 document.querySelector("#palette").addEventListener("click", function(event) {
   brushColor = event.target.id;
   document.querySelector("#pen").style.backgroundColor = event.target.id;
-  // brushElement = event.target; b
+
+  // remove any white stroke from any color that might be selected
+  var colorBlobs = document.getElementsByClassName("color-blob");
+  for (var i = 0; i < colorBlobs.length; i++) {
+    colorBlobs[i].style.borderColor = colorBlobs[i].id;
+  }
+  console.log(event.target);
+  // add stroke to selected color
+  if (event.target.id !== "palette") {
+    updateBlobStroke(event.target);
+  }
 });
+
+function updateBlobStroke(colorBlob) {
+  colorBlob.style.borderStyle = "solid";
+  colorBlob.style.borderColor = "#FFF";
+}
 
 document.querySelector("#canvas").addEventListener("mouseover", function(event) {
   if (mouseDown) {
     if (event.target.id !== "canvas" && event.target.className !== "row" && event.target.className !== "column") {
-      event.target.style.backgroundColor = brushColor;
+      if (penSelected) {
+        event.target.style.backgroundColor = brushColor;
+      } else {
+        event.target.style.backgroundColor = "#FFF";
+      }
     }
   }
 });
 
-// // Update tool selection
-// document.querySelector("#toolPanel").addEventListener("click", function(event) {
-//   switch (event.target.id) {
-//     case "pen":
-//
-//       break;
-//     case "eraser":
-//
-//       break;
-//     case "trash":
-//
-//       break;
-//   }
-// });
+// Update tool selection
+document.querySelector("#toolPanel").addEventListener("click", function(event) {
+  switch (event.target.id) {
+    case "pen":
+      penSelected = true;
+      selectTool(event.target);
+      // document.getElementById("myP").style.cursor = "pointer";
+      break;
+    case "eraser":
+      penSelected = false;
+      selectTool(event.target);
+      break;
+    case "trash":
+      clearCanvas();
+      break;
+    case "newRow":
+
+      break;
+  }
+});
+
+function clearCanvas() {
+  var cells = document.getElementsByClassName("cell");
+  for (var i = 0; i < cells.length; i++) {
+    cells[i].style.backgroundColor = "#FFF";
+  }
+}
+
+function selectTool(tool) {
+  console.log(tool);
+  document.querySelector("#eraser").style.borderStyle = "none";
+  document.querySelector("#pen").style.borderStyle = "none";
+  tool.style.borderStyle = "solid";
+}

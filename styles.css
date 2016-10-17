@@ -10,6 +10,7 @@ h1 {
 nav {
   display: flex;
   justify-content: center;
+  /*set margin to be the same as container*/
 }
 
 .container {
@@ -18,9 +19,12 @@ nav {
   border-radius: 20px;
   margin-right: 10%;
   margin-left: 10%;
+  width: 80%;
   /*margin-top: 50px;*/
   padding-top: 10px;
-  min-width: 960px;
+  max-width: 1024px;
+  min-width: 1000px;
+
 }
 
 .grid {
@@ -29,6 +33,7 @@ nav {
   justify-content: center;
   /*background-color: #CCCCCC;*/
   min-width: 720px;
+  cursor: url(img/penCursor.svg, default);
 }
 
 .column {
@@ -67,19 +72,29 @@ nav {
 }
 
 .color-blob {
-  height: 45px;
-  width:  45px;
+  height: 40px;
+  width:  40px;
   border-radius: 50%;
   margin: 8px;
+  border-style: solid;
+}
+
+.tool-box {
+  /*align-items: center;*/
+  height: 120px;
 }
 
 .tools {
-  width:100px;
-  height:100px;
+  width:75px;
+  height:75px;
   padding: 10px;
-  margin: 10px;
+  margin: 20px;
   margin-top: 0px;
-  background-color: transparent;
+  /*background-color: transparent;*/
   border-radius: 50%;
-  /*fill: blue;*/
+  align-self: center;
+}
+
+.tools:hover {
+  /*enable stroke*/
 }
